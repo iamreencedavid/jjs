@@ -11,5 +11,19 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+let js_resource = 'resources/assets/js/';
+
+mix
+   .js(js_resource + 'app.js', 'public/js')
+   .js([
+   		js_resource + 'tether.min.js',
+   		js_resource + 'jquery-scrollTo/jquery.scrollTo.js',
+   		js_resource + 'plugins/jquery-1.11.1.min.js',
+   		js_resource + 'plugins/jquery-migrate-1.2.1.min.js',
+   		js_resource + 'plugins/jquery.easing.1.3.js',
+   		js_resource + 'plugins/jquery-scrollTo/jquery.scrollTo.min.js',
+   		js_resource + 'plugins/prism/prism.js',
+   		js_resource + 'main.js'
+   	],'public/js/vendor.js')
+   .sass('resources/assets/sass/app.scss', 'public/css')
+   .sass('resources/assets/sass/main.scss','public/css/vendor.css');
