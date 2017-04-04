@@ -52,20 +52,35 @@ class AdminController extends Controller
 
     public function news_store(Request $request)
     {   
-        //return response()->json($request);
+        
+        $image_name = null;
 
-        // $this->validate($request, [
-        //     'title' => 'required',
-        //     'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
-        // ]);
+        $this->validate($request, [
+            'title'        => 'required',
+            'date'         => 'required',
+            'caption'      => 'required',
+            'description'  => 'required',
+            //'image'        => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
 
         if ($request->hasFile('image')) {
             $image_name = time().'.'.$request->image->getClientOriginalExtension();
             $path = $request->image->storeAs('public/uploads/news', $image_name);
         }
-        
-        // $request->image->storeAs(public_path('uploads/news'), $image_name);
+       
+        $create = News::create([
+            'title'         => $request->get('title'),
+            'date'          => $request->get('date'),
+            'caption'       => $request->get('caption'),
+            'description'   => $request->get('description'),
+            'photo'         => $image_name,
+            'status'        => $request->get('status')
+        ]);
 
+        return response()->json([
+            'data'    => $create,
+            'message' => 'News has been added'
+        ]);
     }
 
     public function users()

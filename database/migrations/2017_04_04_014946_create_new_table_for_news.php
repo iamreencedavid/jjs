@@ -19,7 +19,7 @@ class CreateNewTableForNews extends Migration
             $table->date('date');
             $table->text('caption');
             $table->text('description');
-            $table->string('photo' , 200);
+            $table->string('photo' , 200)->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
 

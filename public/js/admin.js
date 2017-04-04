@@ -10380,7 +10380,13 @@ $(document).ready(function () {
 			dataType: 'json',
 			contentType: false,
 			processData: false
-		}).done(function (response) {});
+		}).done(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+
+			setTimeout(function () {
+				window.location = _root + 'news';
+			}, 2000);
+		});
 
 		return false;
 	});
