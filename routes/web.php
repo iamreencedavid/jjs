@@ -22,6 +22,15 @@ Route::group(
 	'prefix' 	=> '/server/'
 	] , function(){
 
-	Route::get('jobs' , 'AdminController@index');
-	Route::get('jobs/create' , 'AdminController@create');
+	Route::get('jobs' , 'AdminController@jobs');
+	Route::get('jobs/create' , 'AdminController@jobs_create');
+
+	Route::get('news' , 'AdminController@news');
+	Route::get('news/create' , 'AdminController@news_create');
+	Route::post('news/store', 'AdminController@news_store');
+	
+
+	Route::get('users' , 'AdminController@users');
+
+	Route::get('settings' , 'AdminController@settings');
 });

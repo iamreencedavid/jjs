@@ -10331,7 +10331,7 @@ return jQuery;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_toastr__ = __webpack_require__(143);
@@ -10343,6 +10343,49 @@ window.$ = window.jQuery = __webpack_require__(0);
 
 window.moment = __WEBPACK_IMPORTED_MODULE_0_moment___default.a;
 window.toastr = __WEBPACK_IMPORTED_MODULE_1_toastr___default.a;
+
+$.ajaxSetup({
+	headers: {
+		'X-CSRF-Token': $("meta[name='csrfToken']").attr('content')
+	},
+	cache: true
+});
+
+var _root = '/server/';
+var storage_path = '/storage/uploads/';
+
+$(document).ready(function () {
+	/**
+ * news Sscripts
+ **/
+
+	$(document).on('submit', '#form_news_create', function (event) {
+
+		var $this = $(this);
+		var formData = new FormData();
+
+		formData.append('title', $('input[name="title"]').val());
+		formData.append('date', $('input[name="date"]').val());
+		formData.append('caption', $('textarea[name="caption"]').val());
+		formData.append('description', $('textarea[name="description"]').val());
+		formData.append('status', $('input[name="status"]').val());
+
+		// Attach file
+		formData.append('image', $('input[type=file]')[0].files[0]);
+
+		$.ajax({
+			url: _root + 'news/store',
+			data: formData,
+			type: 'POST',
+			dataType: 'json',
+			contentType: false,
+			processData: false
+		}).done(function (response) {});
+
+		return false;
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */,

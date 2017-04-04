@@ -39,10 +39,11 @@
 		<nav class="tabs is-boxed">
 			<div class="container">
 				<ul>
-				<li class="is-active"><a>Jobs</a></li>
-					<li><a>News</a></li>
-					<li><a>Users</a></li>
-					<li><a>Settings</a></li>
+					<li {{ ($tab == 'jobs') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/jobs') }}">Jobs</a></li>
+					<li {{ ($tab == 'news') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/news') }}">News</a></li>
+					<li {{ ($tab == 'users') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/users') }}">Users</a></li>
+					<li {{ ($tab == 'settings') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/settings') }}">Settings</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
