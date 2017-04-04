@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('master');
-});
-
+Route::get('/', 'HomeController@index');
 
 //Back End Routes
 Route::group(
