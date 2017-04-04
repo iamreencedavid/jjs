@@ -6,21 +6,22 @@
 @endpush
 
 @section('content')
-<form id="form_jobs_create">
-	<div class="columns">
-		<div class="column is-three-quarters">
-			<div class="block">
-				<a href="{{ URL::to('/server/jobs') }}" class="button is-primary">Back to List</a>
-			</div>
+<div class="columns">
+	<div class="column is-three-quarters">
+		<div class="block">
+			<a href="{{ URL::to('/server/news') }}" class="button is-primary">Back to List</a>
+			<a href="{{ URL::to('/server/news/create') }}" class="button is-primary">Create News</a>
 		</div>
 	</div>
+</div>
 
+<form id="form_news_update" enctype="multipart/form-data">
 	<div class="columns">
 		<div class="column is-three-quarters">
 			<div class="field">
-				<label class="label">Position</label>
+				<label class="label">Title</label>
 				<p class="control">
-					<input class="input" type="text" name="position">
+					<input name="title" class="input" id="title" type="text" placeholder="News Title" value="{{ $news->title }}">
 				</p>
 			</div>
 		</div>
@@ -31,7 +32,18 @@
 			<div class="field">
 				<label class="label">Date</label>
 				<p class="control">
-					<input class="input" id="datepicker" type="text" name="closed_date">
+					<input name="date" class="input" id="datepicker" type="text" value="{{ $news->date }}">
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="columns">
+		<div class="column is-three-quarters">
+			<div class="field">
+				<label class="label">Caption</label>
+				<p class="control">
+					<textarea name="caption" class="textarea">{{ $news->caption }}</textarea>
 				</p>
 			</div>
 		</div>
@@ -42,10 +54,17 @@
 			<div class="field">
 				<label class="label">Description</label>
 				<p class="control">
-					<textarea name="description" id="description"></textarea>
+					<textarea name="description" id="description">{{ $news->description }}</textarea>
 				</p>
 			</div>
 		</div>
+	</div>
+
+	<div class="field">
+		<label class="label">Upload image photo</label>
+		<p class="control">
+			<input type="file">
+		</p>
 	</div>
 
 	<div class="field">
@@ -62,16 +81,18 @@
 		</p>
 	</div>
 
+	<input type="hidden" id="_id" value="{{ $news->id }}">
+	<input type="hidden" name="old_image" value="{{ $news->photo }}">
 	<div class="field is-grouped">
 		<p class="control">
-			<button class="button is-primary">Submit</button>
+			<button type="submit" class="button is-primary">Update</button>
 		</p>
 		<p class="control">
-			<button class="button is-link">Cancel</button>
+			<button type="button" class="button is-link">Cancel</button>
 		</p>
 	</div>
 </form>
-
+		
 @endsection
 
 @push('scripts')

@@ -10390,6 +10390,106 @@ $(document).ready(function () {
 
 		return false;
 	});
+
+	$(document).on('submit', '#form_news_update', function (event) {
+
+		var $this = $(this);
+		var formData = new FormData();
+
+		formData.append('title', $('input[name="title"]').val());
+		formData.append('date', $('input[name="date"]').val());
+		formData.append('caption', $('textarea[name="caption"]').val());
+		formData.append('description', $('textarea[name="description"]').val());
+		formData.append('status', $('input[name="status"]').val());
+		formData.append('old_image', $('input[name="old_image"]').val());
+
+		// Attach file
+		formData.append('image', $('input[type=file]')[0].files[0]);
+
+		$.ajax({
+			url: _root + 'news/update/' + $('#_id').val(),
+			data: formData,
+			type: 'POST',
+			dataType: 'json',
+			contentType: false,
+			processData: false
+		}).done(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+
+			setTimeout(function () {
+				window.location = _root + 'news';
+			}, 2000);
+		});
+
+		return false;
+	});
+
+	/**
+ * Jobs Sscripts
+ **/
+	$(document).on('submit', '#form_jobs_create', function (event) {
+
+		var $this = $(this);
+
+		$.ajax({
+			url: _root + 'jobs/store',
+			data: $this.serialize(),
+			type: 'POST',
+			dataType: 'json'
+		}).done(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+
+			setTimeout(function () {
+				window.location = _root + 'jobs';
+			}, 2000);
+		});
+
+		return false;
+	});
+
+	$(document).on('submit', '#form_jobs_update', function (event) {
+
+		var $this = $(this);
+
+		$.ajax({
+			url: _root + 'jobs/update/' + $('#_id').val(),
+			data: $this.serialize(),
+			type: 'PUT',
+			dataType: 'json'
+		}).done(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+
+			setTimeout(function () {
+				window.location = _root + 'jobs';
+			}, 2000);
+		});
+
+		return false;
+	});
+
+	//Removing Item in table
+	$(document).on('click', '.remove-item', function (event) {
+		event.preventDefault();
+
+		var _this = $(this);
+		var id = _this.data('id');
+		var box = $('#box-' + id);
+		var rel = _this.attr('rel');
+
+		if (confirm('Do you want to remove the selected item?')) {
+			$.ajax({
+				url: _root + rel + '/delete/' + id,
+				type: 'DELETE',
+				dataType: 'json'
+			}).done(function (response) {
+				__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+
+				setTimeout(function () {
+					box.remove();
+				}, 2000);
+			});
+		}
+	});
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

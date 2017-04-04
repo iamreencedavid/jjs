@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobQualification extends Model
 {
-	protected $table = 'jobs_qualification'
+	protected $table = 'jobs_qualification';
 
     protected $fillable = [
     	'job_id', 'qualification'
