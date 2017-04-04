@@ -15,6 +15,7 @@ let js_resource = 'resources/assets/js/';
 
 mix
    .js(js_resource + 'app.js', 'public/js')
+   .js(js_resource + 'admin.js', 'public/js/admin.js')
    .js([
    		js_resource + 'tether.min.js',
    		js_resource + 'jquery-scrollTo/jquery.scrollTo.js',
@@ -26,4 +27,7 @@ mix
    		js_resource + 'main.js'
    	],'public/js/vendor.js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .sass('resources/assets/sass/main.scss','public/css/vendor.css');
+   .sass('resources/assets/sass/main.scss','public/css/vendor.css')
+   .sass('resources/assets/sass/admin.scss', 'public/css/admin.css')
+   .copy('node_modules/pikaday/css/pikaday.css', 'public/libraries/pikaday/pikaday.css')
+   .copy('node_modules/pikaday/pikaday.js', 'public/libraries/pikaday/pikaday.js');

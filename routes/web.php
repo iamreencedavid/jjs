@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('master');
 });
+
+
+//Back End Routes
+Route::group(
+	[
+	'prefix' 	=> '/server/'
+	] , function(){
+
+	Route::get('jobs' , 'AdminController@index');
+	Route::get('jobs/create' , 'AdminController@create');
+});

@@ -15,5 +15,11 @@
     "laravel-mix": "^0.8.3",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
+  },
+  "dependencies": {
+    "bulma": "^0.4.0",
+    "pikaday": "^1.5.1",
+    "tinymce": "^4.5.6",
+    "toastr": "^2.1.2"
   }
 }
