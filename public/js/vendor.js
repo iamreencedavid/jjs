@@ -10583,8 +10583,6 @@ $(document).ready(function ($) {
             contentType: false,
             processData: false
         }).done(function (response) {
-            toastr.success(response.message, { timeOut: 1500 });
-
             setTimeout(function () {
                 window.location = '/';
             }, 2000);

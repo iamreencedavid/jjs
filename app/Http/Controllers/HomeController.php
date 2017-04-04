@@ -9,6 +9,8 @@ use App\Job;
 use App\JobQualification;
 use App\Application;
 
+use App\Mail\SendResume;
+
 class HomeController extends Controller
 {	
 	protected $views;
@@ -49,6 +51,10 @@ class HomeController extends Controller
             'email_address'    => $request->get('email'),
             'resume'           => $file_name
         ]);
+
+        if ($create) {
+            \Mail::to($create->email_address)->send(new SendResume($create));
+        }
 
         return response()->json([
             'data'    => $create,
