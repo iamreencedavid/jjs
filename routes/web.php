@@ -14,6 +14,9 @@
 Route::get('/', 'HomeController@index');
 Route::post('/application/send-request', 'HomeController@send_request');
 
+
+Route::get('/admin/login' , 'AdminController@login');
+
 //Back End Routes
 Route::group(
 	[

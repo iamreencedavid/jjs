@@ -18,6 +18,13 @@ class AdminController extends Controller
 
     }
 
+    public function login()
+    {
+        $views['title'] = 'Login';
+
+        return view('login', $views);
+    }
+
     public function jobs()
     {
     	$views['title'] = 'Jobs';
