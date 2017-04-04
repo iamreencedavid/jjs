@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrfToken" content="{{ csrf_token() }}">
 
     <title>JJS - Outsource HR Facility</title>
 
@@ -35,7 +36,7 @@
 
 
   <!-- Page Content -->
-  <section>
+  <section style="margin-top:50px">
     <div class="container">
         @yield('content')
     </div>

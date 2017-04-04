@@ -113,50 +113,9 @@
 
 
             <!-- /.Sign Up Form -->
-            <div class="row">               
-            	<div class="card-block"> 
-            		<div class="col-md-12">
-            			<h3>We want you!</h3>      
-            			<h3>Submit your RESUME NOW!</h3>                    
-            			<hr></hr>   
-            			<form class="img-form">                      
-            				<div class="form-group">                        
-            					<label for="exampleInputEmail1">Fullname</label>
-            					<input class="form-control" type="text" value="" id="example-text-input" >
-
-            					<div class="form-group">                      
-            						<label for="exampleInputEmail1">Contact number</label>
-            						<input class="form-control" type="tel" value="+639-00-000-0000" id="example-tel-input">
-            					</div>
-
-            					<div class="form-group">                      
-            						<label for="exampleInputEmail1">Email address</label>
-            						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            						<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            					</div>                                    
-
-            					<div class="form-group">
-            						<label for="exampleInputFile">Upload resume</label>
-            						<input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-            						<small id="fileHelp" class="form-text text-muted">PDF or Doc file accepted with size not greater thatn 3MB</small>
-            					</div>
-
-            					<div class="form-check">
-            						<label class="form-check-label">
-            							<input type="checkbox" class="form-check-input">
-            							Accept and Read All Terms and Agreement.
-            						</label>
-            					</div>
-            					<button type="submit" class="btn btn-primary">Submit</button>
-            				</form>
-            			</div> 
-            			<div class="text-center">
-            				<img src="images/signup.png"  />
-            			</div>
-            		</div>          
-            	</div>
-            </div>  
-
+            <div class="row" id="Contact">
+                @include('contents.contacts')  
+            </div>
 
         </div> 
 @endsection

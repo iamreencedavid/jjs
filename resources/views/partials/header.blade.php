@@ -17,7 +17,7 @@
                     <a class="nav-link scrollto" href="#Careers">Careers</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link scrollto" href="#Contact"">Contact</a>
+                    <a class="nav-link scrollto" href="#Contact">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scrollto" href="#FAQ">FAQ</a>

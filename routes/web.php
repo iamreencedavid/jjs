@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::post('/application/send-request', 'HomeController@send_request');
 
 //Back End Routes
 Route::group(

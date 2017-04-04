@@ -11,13 +11,13 @@
                   </tr>
             </thead>
             <tbody>
-                  @foreach($jobs as $job)
-                         <tr>
-                              <td>{{ $job['position'] }}</td>
-                              <td>March 31, 2017</td>
-                              <td><a href="#" class="btn btn-primary btn-sm">Apply</a></td>
-                        </tr>
-                  @endforeach
+              @foreach($jobs as $job)
+                     <tr>
+                          <td>{{ $job['position'] }}</td>
+                          <td>March 31, 2017</td>
+                          <td><a href="#Contact" class="btn btn-primary btn-sm">Apply</a></td>
+                    </tr>
+              @endforeach
       </tbody>
 </table>        
 </div>

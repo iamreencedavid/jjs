@@ -10520,9 +10520,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function ($) {
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {$.ajaxSetup({
+    headers: {
+        'X-CSRF-Token': $("meta[name='csrfToken']").attr('content')
+    },
+    cache: true
+});
+
+$(document).ready(function ($) {
 
     /* ======= Scrollspy ======= */
     //$('body').scrollspy({ target: '#header', offset: 400});
@@ -10551,8 +10559,41 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             $('.navbar-collapse').removeClass('in').addClass('collapse');
         }
     });
+
+    /**
+    * Contact Form
+    **/
+    $(document).on('submit', '#form_apply', function (event) {
+
+        var $this = $(this);
+        var formData = new FormData();
+
+        formData.append('fullname', $('input[name="fullname"]').val());
+        formData.append('contact', $('input[name="contact"]').val());
+        formData.append('email', $('input[name="email"]').val());
+
+        // Attach file
+        formData.append('resume', $('input[type=file]')[0].files[0]);
+
+        $.ajax({
+            url: '/application/send-request',
+            data: formData,
+            type: 'POST',
+            dataType: 'json',
+            contentType: false,
+            processData: false
+        }).done(function (response) {
+            toastr.success(response.message, { timeOut: 1500 });
+
+            setTimeout(function () {
+                window.location = '/';
+            }, 2000);
+        });
+
+        return false;
+    });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 5 */
