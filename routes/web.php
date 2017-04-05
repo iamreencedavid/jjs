@@ -17,13 +17,15 @@ Route::get('/jobs/{job_id}', 'HomeController@get_job_info');
 Route::post('/application/send-request', 'HomeController@send_request');
 
 
-Route::get('/admin/login' , 'AdminController@login');
+Route::get('/admin/login' , 'AdminController@login')->middleware('guest');
+
 Route::get('users/login' , 'AdminController@users_signin');
 
 //Back End Routes
 Route::group(
 	[
-	'prefix' 	=> '/server/'
+	'prefix' 	=> '/server/',
+	'middleware' => 'authenticate'
 	] , function(){
 
 	Route::get('applicants' , 'AdminController@applicants');

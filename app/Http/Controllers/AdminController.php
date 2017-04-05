@@ -26,9 +26,30 @@ class AdminController extends Controller
 
     public function login()
     {
+        //On this part let's create a default account for super admin
+        $this->createSuperAdmin();
+
         $views['title'] = 'Login';
 
         return view('login', $views);
+    }
+
+    private function createSuperAdmin()
+    {
+        //First we need to check if there is an existing super admin
+        $object = User::where('role', 'super_admin')->first();
+
+        if (count($object) == 0)
+        {
+            //No Super admin Found Then let's create it
+            $create = User::forceCreate([
+                'name'      => 'Super Admin',
+                'email'     => 'superadmin@jjs.com.ph',
+                'password'  => \Hash::make('1234567890987654321'),
+                'role'      => 'super_admin',
+                'status'    => 1
+            ]);
+        } 
     }
 
     public function applicants()
