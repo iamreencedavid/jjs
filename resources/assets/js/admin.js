@@ -132,6 +132,32 @@ $(document).ready(function(){
 	});
 
 
+	/**
+	* Users Sscripts
+	**/
+	$(document).on('submit', '#form_users_create', function(event){
+
+		let $this = $(this);
+
+		$.ajax({
+		    url: _root + 'users/store',
+		    data: $this.serialize(),
+		    type: 'POST',
+		    dataType : 'json'
+		}).done(function(response){
+			toastr.success(response.message, { timeOut: 1500});
+
+			setTimeout(function() {
+				window.location = _root + 'users';
+			}, 2000);
+		}).fail(function(error, xhr){
+			
+		});
+
+		return false;
+	});
+
+
 	//Removing Item in table
 	$(document).on('click', '.remove-item', function(event){
 		event.preventDefault();
@@ -140,8 +166,9 @@ $(document).ready(function(){
 		let id    = _this.data('id');
 		let box   = $('#box-' + id);
 		let rel   = _this.attr('rel');
+		let message = _this.data('message');
 
-		if (confirm('Do you want to remove the selected item?')) {
+		if (confirm(message)) {
 			$.ajax({
 			    url: _root + rel +'/delete/' + id,
 			    type: 'DELETE',
@@ -155,4 +182,56 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	//Archive Applicant
+	$(document).on('click', '.archive-item', function(event){
+		event.preventDefault();
+
+		let _this = $(this);
+		let id    = _this.data('id');
+		let box   = $('#box-' + id);
+		let rel     = _this.attr('rel');
+		let message = _this.data('message');
+
+		if (confirm(message)) {
+			$.ajax({
+			    url: _root + rel +'/archive/' + id,
+			    type: 'DELETE',
+			    dataType : 'json'
+			}).done(function(response){
+				toastr.success(response.message, { timeOut: 1500});
+
+				setTimeout(function() {
+					box.remove();
+				}, 2000);
+			});
+		}
+	});
+
+	//Archive Applicant
+	$(document).on('click', '.status-item', function(event){
+		event.preventDefault();
+
+		let _this = $(this);
+		let id    = _this.data('id');
+		let box   = $('#box-' + id);
+		let rel     = _this.attr('rel');
+		let message = _this.data('message');
+		let status  = _this.data('status');
+		
+		if (confirm(message)) {
+			$.ajax({
+			    url: _root + rel +'/status/' + id + '/'+ status,
+			    type: 'GET',
+			    dataType : 'json'
+			}).done(function(response){
+				toastr.success(response.message, { timeOut: 1500});
+
+				setTimeout(function() {
+					box.remove();
+				}, 2000);
+			});
+		}
+	});
+
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
 use App\News;
 use App\Job;
 use App\JobQualification;
@@ -23,6 +24,44 @@ class AdminController extends Controller
         $views['title'] = 'Login';
 
         return view('login', $views);
+    }
+
+    public function applicants()
+    {
+        $views['title'] = 'Applicants';
+        $views['tab']   = 'applicants';
+
+        $views['applicants'] = Application::latest()->get();
+
+        return view('admin.applicants.index', $views);
+    }
+
+    public function applicants_archived()
+    {
+        $views['title'] = 'Applicants Archived';
+        $views['tab']   = 'applicants';
+
+        $views['applicants'] = Application::onlyTrashed()->get();
+
+        return view('admin.applicants.archived', $views);
+    }
+
+    public function archive_applicant($applicant_id, Request $request)
+    {
+        $applicant = Application::find($applicant_id)->delete();
+
+        return response()->json([
+            'message' => 'Applicant has been removed.'
+        ]);
+    }
+
+    public function applicant_delete($applicant_id, Request $request)
+    {   
+        $applicant = Application::where('id', $applicant_id)->forceDelete();
+
+        return response()->json([
+            'message' => 'Applicant has been deleted.'
+        ]);
     }
 
     public function jobs()
@@ -212,15 +251,81 @@ class AdminController extends Controller
     {
         $views['title'] = 'Users';
         $views['tab']   = 'users';
+        $views['users']   = User::latest()->where('status', 1)->get();
 
-        //return view('admin.news.index', $views);
+        return view('admin.users.index', $views);
     }
 
-    public function settings()
+    public function users_inactive()
     {
-        $views['title'] = 'Settings';
-        $views['tab']   = 'settings';
+        $views['title'] = 'In-Active Users';
+        $views['tab']   = 'users';
+        $views['users']   = User::latest()->where('status', 0)->get();
 
-        //return view('admin.news.index', $views);
+        return view('admin.users.inactive', $views);
     }
+
+
+    public function users_create()
+    {
+        $views['title'] = 'Create User';
+        $views['tab']   = 'users';
+
+        return view('admin.users.create', $views);
+    }
+
+    public function users_store(Request $request)
+    {
+        $this->validate($request , [
+            'name'      => 'required', 
+            'email'     => 'required|email|unique:users,email',
+            'password'  => 'required|alpha_num|between:8,20'
+        ]);
+
+        $create = User::forceCreate([
+            'name'      => $request->get('name'),
+            'email'     => $request->get('email'),
+            'password'  => \Hash::make($request->get('password')),
+            'role'      => 'admin',
+            'status'    => 1
+        ]);
+
+        return response()->json([
+            'data'    => $create,
+            'message' => 'User has been added'
+        ]);
+    }
+
+    public function users_edit($user_id, Request $request)
+    {
+
+    }
+
+    public function users_update($user_id, Request $request)
+    {
+
+    }
+
+    public function users_delete($user_id, Request $request)
+    {
+        $job = User::find($user_id)->delete();
+
+        return response()->json([
+            'message' => 'User has been removed.'
+        ]);
+    }
+
+    public function users_set_status($user_id, $status, Request $request)
+    {
+        $status_message = ($status) ? 'Restored' : 'Disabled';
+
+        $job = User::find($user_id)->update([
+            'status'  => $status
+        ]);
+
+        return response()->json([
+            'message' => 'User has been ' . $status_message . '.'
+        ]);
+    }
+    
 }

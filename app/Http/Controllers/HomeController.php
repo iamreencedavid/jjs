@@ -41,7 +41,7 @@ class HomeController extends Controller
         ]);
 
         if ($request->hasFile('resume')) {
-            $file_name = time().'.'.$request->resume->getClientOriginalExtension();
+            $file_name = strtolower(str_replace(" ", "-", $request->get('fullname')))."-".time().'.'.$request->resume->getClientOriginalExtension();
             $path = $request->resume->storeAs('public/uploads/resume', $file_name);
         }
        
@@ -52,9 +52,9 @@ class HomeController extends Controller
             'resume'           => $file_name
         ]);
 
-        if ($create) {
-            \Mail::to($create->email_address)->send(new SendResume($create));
-        }
+        // if ($create) {
+        //     \Mail::to($create->email_address)->send(new SendResume($create));
+        // }
 
         return response()->json([
             'data'    => $create,

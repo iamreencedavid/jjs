@@ -4,9 +4,9 @@
 		<header class="nav">
 			<div class="container">
 				<div class="nav-left">
-					<a class="nav-item">
+					<!-- a class="nav-item">
 						<img src="images/bulma-type-white.png" alt="Logo">
-					</a>
+					</a> -->
 				</div>
 				<span class="nav-toggle">
 					<span></span>
@@ -39,10 +39,10 @@
 		<nav class="tabs is-boxed">
 			<div class="container">
 				<ul>
+					<li {{ ($tab == 'applicants') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/applicants') }}">Applicants</a>
 					<li {{ ($tab == 'jobs') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/jobs') }}">Jobs</a></li>
 					<li {{ ($tab == 'news') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/news') }}">News</a></li>
 					<li {{ ($tab == 'users') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/users') }}">Users</a></li>
-					<li {{ ($tab == 'settings') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/settings') }}">Settings</a>
 					</li>
 				</ul>
 			</div>

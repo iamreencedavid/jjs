@@ -10,6 +10,7 @@
 		</div>
 	</div>
 
+	<h1>List of News</h1>
 	<table class="table">
 			<thead>
 				<tr>
@@ -34,7 +35,7 @@
 							    </span>
 							    <span>Edit</span>
 							  </a>
-							<a data-id="{{ $item['id'] }}" rel="news" class="button is-danger is-outlined remove-item">
+							<a data-id="{{ $item['id'] }}" rel="news" class="button is-danger is-outlined remove-item" data-message="Do you want to remove this news?">
 							    <span>Delete</span>
 							    <span class="icon is-small">
 							      <i class="fa fa-times"></i>
