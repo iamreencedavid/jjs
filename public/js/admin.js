@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 137);
+/******/ 	return __webpack_require__(__webpack_require__.s = 138);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1899,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(133)("./" + name);
+            __webpack_require__(134)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -25912,7 +25912,7 @@ return zhTw;
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_toastr__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_toastr__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_toastr___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_toastr__);
 window.$ = window.jQuery = __webpack_require__(1);
 
@@ -26068,6 +26068,27 @@ $(document).ready(function () {
 		return false;
 	});
 
+	//Users Login
+	$(document).on('submit', '#form_login', function (event) {
+
+		var $this = $(this);
+
+		$.ajax({
+			url: '/users/login',
+			data: $this.serialize(),
+			type: 'GET',
+			dataType: 'json'
+		}).done(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+
+			setTimeout(function () {
+				window.location = _root + 'applicants';
+			}, 2000);
+		}).fail(function (error, xhr) {});
+
+		return false;
+	});
+
 	//Removing Item in table
 	$(document).on('click', '.remove-item', function (event) {
 		event.preventDefault();
@@ -26161,7 +26182,8 @@ $(document).ready(function () {
 /* 130 */,
 /* 131 */,
 /* 132 */,
-/* 133 */
+/* 133 */,
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -26410,10 +26432,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 133;
+webpackContext.id = 134;
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -26845,11 +26867,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         })();
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-}(__webpack_require__(135)));
+}(__webpack_require__(136)));
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -26858,8 +26880,8 @@ module.exports = function() {
 
 
 /***/ }),
-/* 136 */,
-/* 137 */
+/* 137 */,
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(118);

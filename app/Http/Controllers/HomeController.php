@@ -61,5 +61,15 @@ class HomeController extends Controller
             'message' => 'Your Application has been Sent!'
         ]);
     }
+
+    public function get_news_info($news_id, Request $request)
+    {
+        return News::find($news_id);
+    }
+
+    public function get_job_info($job_id, Request $request)
+    {
+        return Job::find($job_id);
+    }
 }
 

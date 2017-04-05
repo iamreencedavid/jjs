@@ -157,6 +157,28 @@ $(document).ready(function(){
 		return false;
 	});
 
+	//Users Login
+	$(document).on('submit', '#form_login', function(event){
+
+		let $this = $(this);
+
+		$.ajax({
+		    url: '/users/login',
+		    data: $this.serialize(),
+		    type: 'GET',
+		    dataType : 'json'
+		}).done(function(response){
+			toastr.success(response.message, { timeOut: 1500});
+
+			setTimeout(function() {
+				window.location = _root + 'applicants';
+			}, 2000);
+		}).fail(function(error, xhr){
+			
+		});
+
+		return false;
+	});
 
 	//Removing Item in table
 	$(document).on('click', '.remove-item', function(event){
@@ -218,7 +240,7 @@ $(document).ready(function(){
 		let rel     = _this.attr('rel');
 		let message = _this.data('message');
 		let status  = _this.data('status');
-		
+
 		if (confirm(message)) {
 			$.ajax({
 			    url: _root + rel +'/status/' + id + '/'+ status,

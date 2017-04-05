@@ -17,7 +17,7 @@
 					<a href="{{ URL::to('/') }}" class="nav-item is-active">
 						Back to Site
 					</a>
-					<a class="nav-item">
+					<a href="{{ URL::to('/server/users/signout') }}" class="nav-item">
 						Logout
 					</a>
 				</div>

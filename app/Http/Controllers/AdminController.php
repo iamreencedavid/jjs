@@ -10,8 +10,13 @@ use App\Job;
 use App\JobQualification;
 use App\Application;
 
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 class AdminController extends Controller
 {	
+    use AuthenticatesUsers;
+
 	protected $views;
 
     function __construct()
@@ -328,4 +333,28 @@ class AdminController extends Controller
         ]);
     }
     
+    public function users_signin(Request $request, Guard $auth)
+    {   
+        $this->validate($request, [
+            'email'      => 'required|email',
+            'password'   => 'required'
+        ]);
+
+        if( auth()->attempt(['email' => $request->get('email') , 'password' => $request->get('password')])) {
+            return [
+                'status' => true,
+                'user'   => User::find($auth->user()->id)
+            ];
+        } else {
+            return [
+                'status' => false
+            ];
+        }
+    }
+
+    public function users_signout()
+    {
+        auth()->logout();
+        return redirect()->to('/admin/login');
+    }
 }

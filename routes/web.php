@@ -12,10 +12,13 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/news/{news_id}', 'HomeController@get_news_info');
+Route::get('/jobs/{job_id}', 'HomeController@get_job_info');
 Route::post('/application/send-request', 'HomeController@send_request');
 
 
 Route::get('/admin/login' , 'AdminController@login');
+Route::get('users/login' , 'AdminController@users_signin');
 
 //Back End Routes
 Route::group(
@@ -50,4 +53,6 @@ Route::group(
 	Route::post('users/store', 'AdminController@users_store');
 	Route::post('users/update/{user_id}', 'AdminController@users_update');
 	Route::delete('users/delete/{user_id}', 'AdminController@users_delete');
+
+	Route::get('users/signout' , 'AdminController@users_signout');
 });

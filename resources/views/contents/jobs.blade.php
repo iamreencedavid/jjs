@@ -14,8 +14,11 @@
               @foreach($jobs as $job)
                      <tr>
                           <td>{{ $job['position'] }}</td>
-                          <td>March 31, 2017</td>
-                          <td><a href="#Contact" class="btn btn-primary btn-sm">Apply</a></td>
+                          <td>{{ \Carbon\Carbon::parse($job['closed_date'])->format('F d, Y') }}</td>
+                          <td>
+                            <a href="#" data-id="{{ $job['id'] }}" class="btn btn-primary btn-sm btn-view-job-info">View</a>
+                            <a href="#Contact" class="btn btn-primary btn-sm">Apply</a>
+                          </td>
                     </tr>
               @endforeach
       </tbody>

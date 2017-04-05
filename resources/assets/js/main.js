@@ -1,3 +1,7 @@
+import moment from 'moment';
+
+window.moment = moment;
+
 $.ajaxSetup({
     headers: { 
         'X-CSRF-Token' : $("meta[name='csrfToken']").attr('content') 
@@ -6,6 +10,10 @@ $.ajaxSetup({
 });
 
 $(document).ready(function($) {
+
+    $('[data-remodal-id=modal2]').remodal({
+        modifier: 'with-red-theme'
+    });
 
     /* ======= Scrollspy ======= */
     //$('body').scrollspy({ target: '#header', offset: 400});
@@ -68,4 +76,57 @@ $(document).ready(function($) {
         return false;
     });
 
+    $(document).on('click', '.btn-open-news-info', function(event){
+        event.preventDefault();
+
+        let _this = $(this);
+        let id    = _this.data('id');
+
+        $.ajax({
+            url: '/news/' + id,
+            data: null,
+            type: 'GET',
+            dataType : 'json',
+            contentType: false,
+            processData: false
+        }).done(function(response){
+            let inst = $('[data-remodal-id=News]').remodal();
+
+            $("#news-title").text( response.title );
+            $("#news-date").text( moment(response.date).format('MMMM DD, YYYY') );
+            $("#news-content").html( response.description );
+            /**
+             * Opens the modal window
+             */
+            inst.open();
+        });
+        
+    });
+
+    $(document).on('click', '.btn-view-job-info', function(event){
+        event.preventDefault();
+
+        let _this = $(this);
+        let id    = _this.data('id');
+
+        $.ajax({
+            url: '/jobs/' + id,
+            data: null,
+            type: 'GET',
+            dataType : 'json',
+            contentType: false,
+            processData: false
+        }).done(function(response){
+            let inst = $('[data-remodal-id=Job]').remodal();
+
+            $("#job-title").text( response.title );
+            $("#job-date").text( moment(response.closed_date).format('MMMM DD, YYYY') );
+            $("#job-content").html( response.description );
+            /**
+             * Opens the modal window
+             */
+            inst.open();
+        });
+        
+    });
 });

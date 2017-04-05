@@ -10,6 +10,7 @@
 
     <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ mix('/css/remodal.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('/css/vendor.css') }}" rel="stylesheet" type="text/css">
     <script>
       window.Laravel = <?php echo json_encode([
@@ -45,6 +46,8 @@
 
 
   @include('partials.footer')
+  @include('partials.modals.news')
+  @include('partials.modals.jobs')
 
 <!-- /.map -->        
 <div id="map"></div>

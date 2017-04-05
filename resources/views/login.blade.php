@@ -17,7 +17,7 @@
 
 <body>
 	
-    <section class="hero is-fullheight is-dark is-bold">
+  <section class="hero is-fullheight is-dark is-bold">
 
     <div class="hero-body">
       <div class="container">
@@ -27,19 +27,21 @@
               Login
             </h1>
             <div class="box">
-              <label class="label">Email</label>
-              <p class="control">
-                <input class="input" type="text" placeholder="jjs@example.org">
-              </p>
-              <label class="label">Password</label>
-              <p class="control">
-                <input class="input" type="password" placeholder="●●●●●●●">
-              </p>
-              <hr>
-              <p class="control">
-                <button class="button is-primary">Login</button>
-                <a href="{{ URL::to('/') }}" class="button is-default" style="color:black">Cancel</a>
-              </p>
+              <form id="form_login">
+                <label class="label">Email</label>
+                <p class="control">
+                  <input class="input" name="email" type="text" placeholder="jjs@example.org">
+                </p>
+                <label class="label">Password</label>
+                <p class="control">
+                  <input class="input" name="password" type="password" placeholder="●●●●●●●">
+                </p>
+                <hr>
+                <p class="control">
+                <button type="submit" class="button is-primary">Login</button>
+                  <a href="{{ URL::to('/') }}" class="button is-default" style="color:black">Cancel</a>
+                </p>
+              </form>
             </div>
           </div>
         </div>
