@@ -8,6 +8,8 @@ use App\News;
 use App\Job;
 use App\JobQualification;
 use App\Application;
+use App\Setting;
+use App\Content;
 
 use App\Mail\SendResume;
 
@@ -24,7 +26,8 @@ class HomeController extends Controller
     {
     	$views['news'] = News::latest()->get();
     	$views['jobs'] = Job::latest()->get();
-
+        $views['settings'] = Setting::take(1)->first();
+        
     	return view('home.index', $views);
     }
 

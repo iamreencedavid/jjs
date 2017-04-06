@@ -256,4 +256,36 @@ $(document).ready(function(){
 		}
 	});
 
+	$(document).on('click', '#tabs-settings li', function(event){
+		event.preventDefault();
+
+		let _this = $(this);
+		let rel   = _this.attr('rel');
+
+		let active = $("#tab-"+rel);
+
+		$(".tabs-content").addClass('hidden');
+		$("ul#tabs-settings li").removeClass('is-active');
+		_this.addClass('is-active');
+		active.removeClass('hidden');
+	});
+
+	$(document).on('submit', '.form_settings', function(event){
+
+		let _this = $(this);
+
+		$.ajax({
+		    url: _root + 'settings/store',
+		    data: _this.serialize(),
+		    type: 'POST',
+		    dataType : 'json'
+		}).done(function(response){
+			toastr.success(response.message, { timeOut: 1500});
+		}).fail(function(error, xhr){
+			
+		});
+
+		return false;
+	});
+
 });

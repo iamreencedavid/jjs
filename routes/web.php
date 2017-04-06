@@ -57,4 +57,9 @@ Route::group(
 	Route::delete('users/delete/{user_id}', 'AdminController@users_delete');
 
 	Route::get('users/signout' , 'AdminController@users_signout');
+
+	Route::get('contents' , 'AdminController@contents');
+
+	Route::get('settings' , 'AdminController@settings');
+	Route::post('settings/store' , 'AdminController@settings_store');
 });

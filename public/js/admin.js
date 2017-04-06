@@ -26164,6 +26164,36 @@ $(document).ready(function () {
 			});
 		}
 	});
+
+	$(document).on('click', '#tabs-settings li', function (event) {
+		event.preventDefault();
+
+		var _this = $(this);
+		var rel = _this.attr('rel');
+
+		var active = $("#tab-" + rel);
+
+		$(".tabs-content").addClass('hidden');
+		$("ul#tabs-settings li").removeClass('is-active');
+		_this.addClass('is-active');
+		active.removeClass('hidden');
+	});
+
+	$(document).on('submit', '.form_settings', function (event) {
+
+		var _this = $(this);
+
+		$.ajax({
+			url: _root + 'settings/store',
+			data: _this.serialize(),
+			type: 'POST',
+			dataType: 'json'
+		}).done(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_toastr___default.a.success(response.message, { timeOut: 1500 });
+		}).fail(function (error, xhr) {});
+
+		return false;
+	});
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
 

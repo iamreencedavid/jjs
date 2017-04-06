@@ -44,6 +44,8 @@
 					<li {{ ($tab == 'news') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/news') }}">News</a></li>
 					<li {{ ($tab == 'users') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/users') }}">Users</a></li>
 					</li>
+					<li {{ ($tab == 'contents') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/contents') }}">Contents</a></li>
+					<li {{ ($tab == 'settings') ? 'class=is-active' : '' }}><a href="{{ URL::to('server/settings') }}">Settings</a></li>
 				</ul>
 			</div>
 		</nav>

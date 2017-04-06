@@ -1,3 +1,7 @@
 @import "node_modules/bulma/bulma";
 
 @import "node_modules/toastr/toastr.scss";
+
+.hidden {
+	display: none !important;
+}

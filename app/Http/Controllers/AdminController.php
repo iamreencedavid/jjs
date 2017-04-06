@@ -9,6 +9,8 @@ use App\News;
 use App\Job;
 use App\JobQualification;
 use App\Application;
+use App\Setting;
+use App\Content;
 
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -370,6 +372,87 @@ class AdminController extends Controller
             return [
                 'status' => false
             ];
+        }
+    }
+
+    public function contents()
+    {
+        $views['title'] = 'Contents';
+        $views['tab']   = 'contents';
+
+        return view('admin.contents.index', $views);
+    }
+
+
+    public function settings()
+    {
+        $views['title'] = 'Settings';
+        $views['tab']   = 'settings';
+        $views['settings'] = Setting::take(1)->first();
+
+        return view('admin.settings.index', $views);
+    }
+
+    public function settings_store(Request $request)
+    {
+        $type = $request->get('type');
+
+        //let's check if there is an existing data on settings
+        $settings = Setting::take(1)->first(['id']);
+
+        if ($type == "footer")
+        {
+            $this->validate($request, [
+                'footer_address_1' => 'required'
+            ]);
+
+            if (count($settings) == 0)
+            {
+                $data = Setting::create([
+                    'footer_address_1' => $request->get('footer_address_1'),
+                    'footer_address_2' => $request->get('footer_address_2'),
+                    'footer_address_3' => $request->get('footer_address_3')
+                ]);
+            }
+            else 
+            {
+                $data = Setting::find($settings->id)->update([
+                    'footer_address_1' => $request->get('footer_address_1'),
+                    'footer_address_2' => $request->get('footer_address_2'),
+                    'footer_address_3' => $request->get('footer_address_3')
+                ]);
+            }
+
+            return response()->json([
+                'data'    => $data,
+                'message' => 'Footer Settings has been added'
+            ]);
+        }
+        else if ($type == "social-media")
+        {
+            if (count($settings) == 0)
+            {
+                $data = Setting::create([
+                    'facebook'  => $request->get('facebook'),
+                    'twitter'   => $request->get('twitter'),
+                    'linkedin'  => $request->get('linkedin'),
+                    'google'    => $request->get('google')
+                ]);
+            }
+            else 
+            {
+                $data = Setting::find($settings->id)->update([
+                    'facebook'  => $request->get('facebook'),
+                    'twitter'   => $request->get('twitter'),
+                    'linkedin'  => $request->get('linkedin'),
+                    'google'    => $request->get('google')
+                ]);
+            }
+
+            return response()->json([
+                'data'    => $data,
+                'message' => 'Social Medial Links has been added'
+            ]);
         }
     }
 
