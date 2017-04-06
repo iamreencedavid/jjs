@@ -157,6 +157,31 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$(document).on('submit', '#form_users_update', function(event){
+
+		let $this = $(this);
+
+		$.ajax({
+		    url: _root + 'users/update/' + $('#_id').val(),
+		    data: $this.serialize(),
+		    type: 'PUT',
+		    dataType : 'json'
+		}).done(function(response){
+			toastr.success(response.message, { timeOut: 1500});
+
+			setTimeout(function() {
+				window.location = _root + 'users';
+			}, 2000);
+		}).fail(function(jqxhr, textStatus, error){
+			if (jqxhr.responseJSON.password)
+			{
+				toastr.error(jqxhr.responseJSON.password, { timeOut: 1500});
+			}
+		});
+
+		return false;
+	});
+
 	//Users Login
 	$(document).on('submit', '#form_login', function(event){
 
@@ -295,12 +320,22 @@ $(document).ready(function(){
 	$(document).on('submit', '#form_contents_create', function(event){
 
 		let $this = $(this);
+		let formData = new FormData();
+
+		formData.append('title', $('input[name="title"]').val());
+		formData.append('caption', $('textarea[name="caption"]').val());
+		formData.append('description', $('textarea[name="description"]').val());
+		formData.append('status', $('input[name="status"]').val());
+
+		// Attach file
+		formData.append('image', $('input[type=file]')[0].files[0]); 
 
 		$.ajax({
 		    url: _root + 'contents/store',
-		    data: $this.serialize(),
+		    data: formData,
 		    type: 'POST',
-		    dataType : 'json'
+		    contentType: false,
+		    processData: false
 		}).done(function(response){
 			toastr.success(response.message, { timeOut: 1500});
 
@@ -315,12 +350,23 @@ $(document).ready(function(){
 	$(document).on('submit', '#form_contents_update', function(event){
 
 		let $this = $(this);
+		let formData = new FormData();
+
+		formData.append('title', $('input[name="title"]').val());
+		formData.append('caption', $('textarea[name="caption"]').val());
+		formData.append('description', $('textarea[name="description"]').val());
+		formData.append('status', $('input[name="status"]').val());
+		formData.append('old_image', $('input[name="old_image"]').val());
+		
+		// Attach file
+		formData.append('image', $('input[type=file]')[0].files[0]); 
 
 		$.ajax({
 		    url: _root + 'contents/update/' + $("#_id").val(),
-		    data: $this.serialize(),
-		    type: 'PUT',
-		    dataType : 'json'
+		    data: formData,
+		    type: 'POST',
+		    contentType: false,
+		    processData: false
 		}).done(function(response){
 			toastr.success(response.message, { timeOut: 1500});
 

@@ -54,7 +54,7 @@ Route::group(
 	Route::get('users/edit/{user_id}', 'AdminController@users_edit');
 	Route::get('users/status/{user_id}/{status}', 'AdminController@users_set_status');
 	Route::post('users/store', 'AdminController@users_store');
-	Route::post('users/update/{user_id}', 'AdminController@users_update');
+	Route::put('users/update/{user_id}', 'AdminController@users_update');
 	Route::delete('users/delete/{user_id}', 'AdminController@users_delete');
 
 	Route::get('users/signout' , 'AdminController@users_signout');
@@ -63,7 +63,7 @@ Route::group(
 	Route::get('contents/create' , 'AdminController@contents_create');
 	Route::get('contents/edit/{content_id}', 'AdminController@contents_edit');
 	Route::post('contents/store', 'AdminController@contents_store');
-	Route::put('contents/update/{content_id}', 'AdminController@contents_update');
+	Route::post('contents/update/{content_id}', 'AdminController@contents_update');
 	Route::delete('contents/delete/{content_id}', 'AdminController@contents_delete');
 
 	Route::get('settings' , 'AdminController@settings');

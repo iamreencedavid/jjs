@@ -21,7 +21,7 @@
 			<div class="field">
 				<label class="label">Title</label>
 				<p class="control">
-					<input name="title" class="input" id="title" type="text" placeholder="News Title" value="{{ $news->title }}">
+					<input name="title" class="input" id="title" type="text" placeholder="News Title" value="{{ $news->title }}" required>
 				</p>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 			<div class="field">
 				<label class="label">Date</label>
 				<p class="control">
-					<input name="date" class="input" id="datepicker" type="text" value="{{ $news->date }}">
+					<input name="date" class="input" id="datepicker" type="text" value="{{ $news->date }}" required>
 				</p>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 			<div class="field">
 				<label class="label">Caption</label>
 				<p class="control">
-					<textarea name="caption" class="textarea">{{ $news->caption }}</textarea>
+					<textarea name="caption" class="textarea" required>{{ $news->caption }}</textarea>
 				</p>
 			</div>
 		</div>

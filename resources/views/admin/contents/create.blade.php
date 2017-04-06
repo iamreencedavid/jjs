@@ -15,7 +15,7 @@
 			<div class="field">
 				<label class="label">Title</label>
 				<p class="control">
-					<input name="title" class="input" id="title" type="text">
+					<input name="title" class="input" id="title" type="text" required>
 				</p>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			<div class="field">
 				<label class="label">Caption</label>
 				<p class="control">
-					<textarea name="caption" class="textarea"></textarea>
+					<textarea name="caption" class="textarea" required></textarea>
 				</p>
 			</div>
 		</div>
@@ -41,6 +41,13 @@
 				</p>
 			</div>
 		</div>
+	</div>
+
+	<div class="field">
+		<label class="label">Upload image photo</label>
+		<p class="control">
+			<input type="file" required>
+		</p>
 	</div>
 
 	<div class="field">

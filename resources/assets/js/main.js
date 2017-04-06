@@ -107,6 +107,7 @@ $(document).ready(function($) {
         }).done(function(response){
             let inst = $('[data-remodal-id=Contents]').remodal();
 
+            $("#content-image").attr("src" , "/storage/uploads/contents/" + response.photo);
             $("#contents-title").text( response.title );
             $("#contents-content").html( response.description );
             /**

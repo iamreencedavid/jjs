@@ -21,7 +21,7 @@
 			<div class="field">
 				<label class="label">Position</label>
 				<p class="control">
-					<input class="input" type="text" name="position" value="{{ $job->position }}">
+					<input class="input" type="text" name="position" value="{{ $job->position }}" required>
 				</p>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 			<div class="field">
 				<label class="label">Date</label>
 				<p class="control">
-					<input class="input" id="datepicker" type="text" name="closed_date" value="{{ $job->closed_date }}">
+					<input class="input" id="datepicker" type="text" name="closed_date" value="{{ $job->closed_date }}" required>
 				</p>
 			</div>
 		</div>

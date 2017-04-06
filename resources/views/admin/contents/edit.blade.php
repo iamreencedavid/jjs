@@ -16,7 +16,7 @@
 			<div class="field">
 				<label class="label">Title</label>
 				<p class="control">
-					<input name="title" class="input" id="title" type="text" value="{{ $content->title }}">
+					<input name="title" class="input" id="title" type="text" value="{{ $content->title }}" required>
 				</p>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 			<div class="field">
 				<label class="label">Caption</label>
 				<p class="control">
-					<textarea name="caption" class="textarea">{{ $content->caption }}</textarea>
+					<textarea name="caption" class="textarea" required>{{ $content->caption }}</textarea>
 				</p>
 			</div>
 		</div>
@@ -42,6 +42,13 @@
 				</p>
 			</div>
 		</div>
+	</div>
+
+	<div class="field">
+		<label class="label">Upload image photo</label>
+		<p class="control">
+			<input type="file">
+		</p>
 	</div>
 
 	<div class="field">
@@ -61,6 +68,7 @@
 	<div class="field is-grouped">
 		<p class="control">
 			<input type="hidden" id="_id" value="{{ $content->id }}">
+			<input type="hidden" name="old_image" value="{{ $content->photo }}">
 			<button class="button is-primary">Update</button>
 		</p>
 		<p class="control">

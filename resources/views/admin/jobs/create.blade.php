@@ -20,7 +20,7 @@
 			<div class="field">
 				<label class="label">Position</label>
 				<p class="control">
-					<input class="input" type="text" name="position">
+					<input class="input" type="text" name="position" required>
 				</p>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 			<div class="field">
 				<label class="label">Date</label>
 				<p class="control">
-					<input class="input" id="datepicker" type="text" name="closed_date">
+					<input class="input" id="datepicker" type="text" name="closed_date" required>
 				</p>
 			</div>
 		</div>

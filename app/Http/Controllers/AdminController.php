@@ -279,7 +279,7 @@ class AdminController extends Controller
     {
         $this->views['title'] = 'Users';
         $this->views['tab']   = 'users';
-        $this->views['users']   = User::latest()->where('status', 1)->get();
+        $this->views['users'] = User::latest()->whereNotIn('role', ['super_admin'])->where('status', 1)->get();
 
         return view('admin.users.index', $this->views);
     }
@@ -315,7 +315,7 @@ class AdminController extends Controller
             'email'     => $request->get('email'),
             'password'  => \Hash::make($request->get('password')),
             'role'      => 'admin',
-            'status'    => 1
+            'status'    => $request->get('status')
         ]);
 
         return response()->json([
@@ -326,12 +326,44 @@ class AdminController extends Controller
 
     public function users_edit($user_id, Request $request)
     {
+        $this->views['title'] = 'Update User';
+        $this->views['tab']   = 'users';
 
+        $this->views['user']  = User::find($user_id);
+
+        return view('admin.users.edit', $this->views);
     }
 
     public function users_update($user_id, Request $request)
-    {
+    {   
+        $password = $request->get('password');
 
+        $data = [
+            'name'      => $request->get('name'),
+            'email'     => $request->get('email'),
+            'status'    => $request->get('status')
+        ];
+
+        $this->validate($request , [
+            'name'      => 'required', 
+            'email'     => 'required|email|unique:users,email,'.$user_id
+        ]);
+
+        if (isset($password) && !empty($password))
+        {
+            $this->validate($request , [
+                'password'  => 'required|alpha_num|between:8,20'
+            ]);
+
+            $data = array_merge($data, ['password' => \Hash::make($password)]);
+        }
+
+        $update = User::find($user_id)->update($data);
+
+        return response()->json([
+            'data'    => $update,
+            'message' => 'User has been updated'
+        ]);
     }
 
     public function users_delete($user_id, Request $request)
@@ -409,18 +441,25 @@ class AdminController extends Controller
     }
 
     public function contents_store(Request $request)
-    {   
+    {       
+        $image_name = null;
+
         $this->validate($request, [
             'title'       => 'required',
             'caption'     => 'required',
             'description' => 'required'
         ]);
 
+        if ($request->hasFile('image')) {
+            $image_name = time().'.'.$request->image->getClientOriginalExtension();
+            $path = $request->image->storeAs('public/uploads/contents', $image_name);
+        }
        
         $create = Content::create([
             'title'         => $request->get('title'),
             'caption'       => $request->get('caption'),
             'description'   => $request->get('description'),
+            'photo'         => $image_name,
             'status'        => $request->get('status')
         ]);
 
@@ -442,17 +481,25 @@ class AdminController extends Controller
 
     public function contents_update($content_id, Request $request)
     {
+        $image_name = $request->get('old_image');
+
         $this->validate($request, [
             'title'       => 'required',
             'caption'     => 'required',
             'description' => 'required'
         ]);
 
+        if ($request->hasFile('image')) {
+            $image_name = time().'.'.$request->image->getClientOriginalExtension();
+            $path = $request->image->storeAs('public/uploads/contents', $image_name);
+        }
+
        
         $create = Content::find($content_id)->update([
             'title'         => $request->get('title'),
             'caption'       => $request->get('caption'),
             'description'   => $request->get('description'),
+            'photo'         => $image_name,
             'status'        => $request->get('status')
         ]);
 

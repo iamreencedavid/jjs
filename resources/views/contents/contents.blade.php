@@ -2,13 +2,7 @@
 <div class="col-md-4">
 	<div class="card h-100">
 		<div class="card-block">
-			@if(strpos($content['title'], 'Human Resource') !== false)
-			<img class="img-fluid rounded" src="images/hr.jpg" alt="">
-			@elseif(strpos($content['title'], 'Janitorial') !== false)
-			<img class="img-fluid rounded" src="images/janitorial.jpg" alt="">
-			@elseif(strpos($content['title'], 'Recruitment') !== false)
-			<img class="img-fluid rounded" src="images/recruitment.jpg" alt="">
-			@endif
+			<img class="img-fluid rounded" src="/storage/uploads/contents/{{ $content['photo'] }}" alt="">
 			<h2 class="card-title">{{ $content['title'] }}</h2>
 			<p class="card-text">
 				{{ $content['caption'] }}

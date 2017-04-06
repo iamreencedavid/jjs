@@ -20,7 +20,7 @@
 			<div class="field">
 				<label class="label">Title</label>
 				<p class="control">
-					<input name="title" class="input" id="title" type="text" placeholder="News Title">
+					<input name="title" class="input" id="title" type="text" placeholder="News Title" required>
 				</p>
 			</div>
 		</div>
@@ -31,7 +31,7 @@
 			<div class="field">
 				<label class="label">Date</label>
 				<p class="control">
-					<input name="date" class="input" id="datepicker" type="text">
+					<input name="date" class="input" id="datepicker" type="text" required>
 				</p>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 			<div class="field">
 				<label class="label">Caption</label>
 				<p class="control">
-					<textarea name="caption" class="textarea"></textarea>
+					<textarea name="caption" class="textarea" required></textarea>
 				</p>
 			</div>
 		</div>

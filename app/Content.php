@@ -9,7 +9,7 @@ class Content extends Model
     protected $table = 'contents';
 
     protected $fillable = [
-    	'title', 'caption', 'description', 'status'
+    	'title', 'caption', 'description', 'photo', 'status'
     ];
 
     protected $guard = ['id'];

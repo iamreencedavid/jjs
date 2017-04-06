@@ -15,7 +15,7 @@
 			<div class="field">
 				<label class="label">Fullname</label>
 				<p class="control">
-					<input name="name" class="input" id="name" type="text">
+					<input name="name" class="input" id="name" type="text" required>
 				</p>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 			<div class="field">
 				<label class="label">Email Address</label>
 				<p class="control">
-					<input name="email" class="input" id="email" type="email">
+					<input name="email" class="input" id="email" type="email" required>
 				</p>
 			</div>
 		</div>
@@ -37,7 +37,7 @@
 			<div class="field">
 				<label class="label">Password</label>
 				<p class="control">
-					<input name="password" class="input" id="password" type="password">
+					<input name="password" class="input" id="password" type="password" required>
 				</p>
 			</div>
 		</div>
