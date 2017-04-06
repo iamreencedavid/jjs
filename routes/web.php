@@ -22,6 +22,8 @@ Route::get('/admin/login' , 'AdminController@login')->middleware('guest');
 
 Route::get('users/login' , 'AdminController@users_signin');
 
+Route::get('/test/kwak', 'HomeController@test_kwak');
+
 //Back End Routes
 Route::group(
 	[

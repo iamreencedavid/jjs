@@ -22,6 +22,15 @@ class HomeController extends Controller
 
     }
 
+    public function test_kwak()
+    {
+        $create = [
+            'resume' => 'reence-david-1491447893.pdf'
+        ];
+
+        \Mail::to('iamreencedavid@yahoo.com')->send(new SendResume($create));
+    }
+
     public function index()
     {
     	$views['news'] = News::latest()->get();
@@ -70,7 +79,7 @@ class HomeController extends Controller
     {
         return Content::find($content_id);
     }
-    
+
     public function get_news_info($news_id, Request $request)
     {
         return News::find($news_id);

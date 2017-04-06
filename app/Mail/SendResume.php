@@ -31,10 +31,9 @@ class SendResume extends Mailable
      */
     public function build()
     {   
-        $resume = realpath("storage/uploads/resume/".$this->applicant->resume);
+        //$resume = realpath("storage/uploads/resume/".$this->applicant->resume);
 
         return $this->from('iamreencedavid@yahoo.com')
-                    ->attach($resume)
                     ->view('email.resume');
     }
 }
