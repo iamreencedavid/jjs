@@ -119,7 +119,7 @@ $(document).ready(function($) {
         }).done(function(response){
             let inst = $('[data-remodal-id=Job]').remodal();
 
-            $("#job-title").text( response.title );
+            $("#job-title").text( response.position );
             $("#job-date").text( moment(response.closed_date).format('MMMM DD, YYYY') );
             $("#job-content").html( response.description );
             /**

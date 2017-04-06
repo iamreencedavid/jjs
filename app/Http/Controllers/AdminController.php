@@ -31,9 +31,9 @@ class AdminController extends Controller
         //On this part let's create a default account for super admin
         $this->createSuperAdmin();
 
-        $views['title'] = 'Login';
+        $this->views['title'] = 'Login';
 
-        return view('login', $views);
+        return view('login', $this->views);
     }
 
     private function createSuperAdmin()
@@ -56,22 +56,22 @@ class AdminController extends Controller
 
     public function applicants()
     {
-        $views['title'] = 'Applicants';
-        $views['tab']   = 'applicants';
+        $this->views['title'] = 'Applicants';
+        $this->views['tab']   = 'applicants';
 
-        $views['applicants'] = Application::latest()->get();
+        $this->views['applicants'] = Application::latest()->get();
 
-        return view('admin.applicants.index', $views);
+        return view('admin.applicants.index', $this->views);
     }
 
     public function applicants_archived()
     {
-        $views['title'] = 'Applicants Archived';
-        $views['tab']   = 'applicants';
+        $this->views['title'] = 'Applicants Archived';
+        $this->views['tab']   = 'applicants';
 
-        $views['applicants'] = Application::onlyTrashed()->get();
+        $this->views['applicants'] = Application::onlyTrashed()->get();
 
-        return view('admin.applicants.archived', $views);
+        return view('admin.applicants.archived', $this->views);
     }
 
     public function archive_applicant($applicant_id, Request $request)
@@ -94,20 +94,20 @@ class AdminController extends Controller
 
     public function jobs()
     {
-    	$views['title'] = 'Jobs';
-        $views['tab']   = 'jobs';
+    	$this->views['title'] = 'Jobs';
+        $this->views['tab']   = 'jobs';
 
-        $views['jobs']  = Job::latest()->get();
+        $this->views['jobs']  = Job::latest()->get();
 
-    	return view('admin.jobs.index', $views);
+    	return view('admin.jobs.index', $this->views);
     }
 
     public function jobs_create()
     {
-    	$views['title'] = 'Create Job';
-        $views['tab']   = 'jobs';
+    	$this->views['title'] = 'Create Job';
+        $this->views['tab']   = 'jobs';
 
-    	return view('admin.jobs.create', $views);
+    	return view('admin.jobs.create', $this->views);
     }
 
     public function jobs_store(Request $request)
@@ -135,12 +135,12 @@ class AdminController extends Controller
 
     public function jobs_edit($job_id)
     {
-        $views['title'] = 'Update Job';
-        $views['tab']   = 'jobs';
+        $this->views['title'] = 'Update Job';
+        $this->views['tab']   = 'jobs';
 
-        $views['job']   = Job::find($job_id);
+        $this->views['job']   = Job::find($job_id);
 
-        return view('admin.jobs.edit', $views);
+        return view('admin.jobs.edit', $this->views);
     }
 
     public function jobs_update($job_id, Request $request)
@@ -176,20 +176,20 @@ class AdminController extends Controller
 
     public function news()
     {
-        $views['title'] = 'News';
-        $views['tab']   = 'news';
+        $this->views['title'] = 'News';
+        $this->views['tab']   = 'news';
 
-        $views['news']  = News::latest()->get();
+        $this->views['news']  = News::latest()->get();
 
-        return view('admin.news.index', $views);
+        return view('admin.news.index', $this->views);
     }
 
     public function news_create()
     {
-        $views['title'] = 'Create News';
-        $views['tab']   = 'news';
+        $this->views['title'] = 'Create News';
+        $this->views['tab']   = 'news';
 
-        return view('admin.news.create', $views);
+        return view('admin.news.create', $this->views);
     }
 
     public function news_store(Request $request)
@@ -227,12 +227,12 @@ class AdminController extends Controller
 
     public function news_edit($news_id)
     {
-        $views['title'] = 'Update News';
-        $views['tab']   = 'news';
+        $this->views['title'] = 'Update News';
+        $this->views['tab']   = 'news';
 
-        $views['news']   = News::find($news_id);
+        $this->views['news']   = News::find($news_id);
 
-        return view('admin.news.edit', $views);
+        return view('admin.news.edit', $this->views);
     }
 
     public function news_update($news_id, Request $request)
@@ -277,29 +277,29 @@ class AdminController extends Controller
 
     public function users()
     {
-        $views['title'] = 'Users';
-        $views['tab']   = 'users';
-        $views['users']   = User::latest()->where('status', 1)->get();
+        $this->views['title'] = 'Users';
+        $this->views['tab']   = 'users';
+        $this->views['users']   = User::latest()->where('status', 1)->get();
 
-        return view('admin.users.index', $views);
+        return view('admin.users.index', $this->views);
     }
 
     public function users_inactive()
     {
-        $views['title'] = 'In-Active Users';
-        $views['tab']   = 'users';
-        $views['users']   = User::latest()->where('status', 0)->get();
+        $this->views['title'] = 'In-Active Users';
+        $this->views['tab']   = 'users';
+        $this->views['users']   = User::latest()->where('status', 0)->get();
 
-        return view('admin.users.inactive', $views);
+        return view('admin.users.inactive', $this->views);
     }
 
 
     public function users_create()
     {
-        $views['title'] = 'Create User';
-        $views['tab']   = 'users';
+        $this->views['title'] = 'Create User';
+        $this->views['tab']   = 'users';
 
-        return view('admin.users.create', $views);
+        return view('admin.users.create', $this->views);
     }
 
     public function users_store(Request $request)
@@ -336,7 +336,7 @@ class AdminController extends Controller
 
     public function users_delete($user_id, Request $request)
     {
-        $job = User::find($user_id)->delete();
+        User::find($user_id)->delete();
 
         return response()->json([
             'message' => 'User has been removed.'
@@ -347,7 +347,7 @@ class AdminController extends Controller
     {
         $status_message = ($status) ? 'Restored' : 'Disabled';
 
-        $job = User::find($user_id)->update([
+        User::find($user_id)->update([
             'status'  => $status
         ]);
 
@@ -375,22 +375,100 @@ class AdminController extends Controller
         }
     }
 
+    /**
+    * Contents Part
+    **/
     public function contents()
     {
-        $views['title'] = 'Contents';
-        $views['tab']   = 'contents';
+        $this->views['title'] = 'Contents';
+        $this->views['tab']   = 'contents';
+        $this->views['contents'] = Content::latest()->get();
 
-        return view('admin.contents.index', $views);
+        return view('admin.contents.index', $this->views);
+    }
+
+    public function contents_create()
+    {
+        $this->views['title'] = 'Create Content';
+        $this->views['tab']   = 'contents';
+
+        return view('admin.contents.create', $this->views);
+    }
+
+    public function contents_store(Request $request)
+    {   
+        $this->validate($request, [
+            'title'       => 'required',
+            'caption'     => 'required',
+            'description' => 'required'
+        ]);
+
+       
+        $create = Content::create([
+            'title'         => $request->get('title'),
+            'caption'       => $request->get('caption'),
+            'description'   => $request->get('description'),
+            'status'        => $request->get('status')
+        ]);
+
+        return response()->json([
+            'data'    => $create,
+            'message' => 'Content has been added'
+        ]);
+    }
+
+    public function contents_edit($content_id, Request $request)
+    {
+        $this->views['title'] = 'Update Content';
+        $this->views['tab']   = 'contents';
+
+        $this->views['content']   = Content::find($content_id);
+
+        return view('admin.contents.edit', $this->views);
+    }
+
+    public function contents_update($content_id, Request $request)
+    {
+        $this->validate($request, [
+            'title'       => 'required',
+            'caption'     => 'required',
+            'description' => 'required'
+        ]);
+
+       
+        $create = Content::find($content_id)->update([
+            'title'         => $request->get('title'),
+            'caption'       => $request->get('caption'),
+            'description'   => $request->get('description'),
+            'status'        => $request->get('status')
+        ]);
+
+        return response()->json([
+            'data'    => $create,
+            'message' => 'Content has been updated'
+        ]);
+    }
+
+    public function contents_delete($content_id, Request $request)
+    {
+        Content::find($content_id)->delete();
+
+        return response()->json([
+            'message' => 'Content has been removed.'
+        ]);
     }
 
 
+    /**
+    * Settings Part
+    **/
     public function settings()
     {
-        $views['title'] = 'Settings';
-        $views['tab']   = 'settings';
-        $views['settings'] = Setting::take(1)->first();
+        $this->views['title'] = 'Settings';
+        $this->views['tab']   = 'settings';
+        $this->views['settings'] = Setting::take(1)->first();
 
-        return view('admin.settings.index', $views);
+        return view('admin.settings.index', $this->views);
     }
 
     public function settings_store(Request $request)

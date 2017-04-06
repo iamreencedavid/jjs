@@ -288,4 +288,47 @@ $(document).ready(function(){
 		return false;
 	});
 
+
+	/**
+	* Jobs Sscripts
+	**/
+	$(document).on('submit', '#form_contents_create', function(event){
+
+		let $this = $(this);
+
+		$.ajax({
+		    url: _root + 'contents/store',
+		    data: $this.serialize(),
+		    type: 'POST',
+		    dataType : 'json'
+		}).done(function(response){
+			toastr.success(response.message, { timeOut: 1500});
+
+			setTimeout(function() {
+				window.location = _root + 'contents';
+			}, 2000);
+		});
+
+		return false;
+	});
+
+	$(document).on('submit', '#form_contents_update', function(event){
+
+		let $this = $(this);
+
+		$.ajax({
+		    url: _root + 'contents/update/' + $("#_id").val(),
+		    data: $this.serialize(),
+		    type: 'PUT',
+		    dataType : 'json'
+		}).done(function(response){
+			toastr.success(response.message, { timeOut: 1500});
+
+			setTimeout(function() {
+				window.location = _root + 'contents';
+			}, 2000);
+		});
+
+		return false;
+	});
 });

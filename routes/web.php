@@ -59,6 +59,11 @@ Route::group(
 	Route::get('users/signout' , 'AdminController@users_signout');
 
 	Route::get('contents' , 'AdminController@contents');
+	Route::get('contents/create' , 'AdminController@contents_create');
+	Route::get('contents/edit/{content_id}', 'AdminController@contents_edit');
+	Route::post('contents/store', 'AdminController@contents_store');
+	Route::put('contents/update/{content_id}', 'AdminController@contents_update');
+	Route::delete('contents/delete/{content_id}', 'AdminController@contents_delete');
 
 	Route::get('settings' , 'AdminController@settings');
 	Route::post('settings/store' , 'AdminController@settings_store');
