@@ -43,7 +43,9 @@ class SendResume extends Mailable
                         'brian.asauro@jjsactsofservicefacilities.com'
                     ])
                     ->attach($resume)
-                    ->view('email.resume');
+                    ->view('email.resume')->with([
+                        'data' => $this->applicant
+                    ]);
 
         // return $this->from('recruitment@jjsactsofservicefacilities.com')
         //             ->cc([
