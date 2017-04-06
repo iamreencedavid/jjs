@@ -14,7 +14,7 @@
 	<div class="col-lg-4">
 		<h1>JJS ACTS OF SERVICE FACILITIES INC</h1>
 		<p>In a nutshell, we are a local manpower service. But this has taken a bit of an antiquated tone. We prefer the term "Outsource HR Facility."</p>
-		<a class="btn btn-primary btn-lg" href="#">Call to Action!</a>
+		<a class="btn btn-primary btn-lg scrollto"  href="#Contact">Call to Action!</a>
 	</div>
 	<!-- /.col-md-4 -->
 </div>
@@ -43,7 +43,7 @@
 
 
 <!-- /.Sign Up Form -->
-<div class="row">
+<div class="row" id="Application">
 	@include('contents.contacts')  
 </div>
 

@@ -17,7 +17,7 @@
                           <td>{{ \Carbon\Carbon::parse($job['closed_date'])->format('F d, Y') }}</td>
                           <td>
                             <a href="#" data-id="{{ $job['id'] }}" class="btn btn-primary btn-sm btn-view-job-info">View</a>
-                            <a href="#Contact" class="btn btn-primary btn-sm">Apply</a>
+                            <a href="#Application" class="btn btn-primary btn-sm scrollto">Apply</a>
                           </td>
                     </tr>
               @endforeach
