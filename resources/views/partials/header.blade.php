@@ -18,10 +18,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link scrollto" href="#Contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link scrollto" href="#FAQ">FAQ</a>
-                </li>                   
+                </li>                 
                 <li class="nav-item">
                     <a class="nav-link scrollto" href="#What">What's new?</a>
                 </li>
