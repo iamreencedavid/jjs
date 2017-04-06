@@ -12,22 +12,24 @@ use App\Setting;
 use App\Content;
 
 use App\Mail\SendResume;
+use App\Services\Site;
 
 class HomeController extends Controller
 {	
 	protected $views;
 
-    function __construct()
+    function __construct(Site $site)
     {
-
+        //First let's update all the jobs with expired date
+        $site->updateJobsExpired();
     }
 
     public function index()
-    {
-    	$views['news'] = News::latest()->get();
-    	$views['jobs'] = Job::latest()->get();
+    {   
+    	$views['news'] = News::latest()->where('status', 1)->get();
+    	$views['jobs'] = Job::latest()->where('status', 1)->get();
         $views['settings'] = Setting::take(1)->first();
-        $views['contents'] = Content::latest()->get();
+        $views['contents'] = Content::latest()->where('status', 1)->get();
 
     	return view('home.index', $views);
     }

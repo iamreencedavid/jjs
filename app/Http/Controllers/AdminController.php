@@ -15,15 +15,18 @@ use App\Content;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Services\Site;
+
 class AdminController extends Controller
 {	
     use AuthenticatesUsers;
 
 	protected $views;
 
-    function __construct()
+    function __construct(Site $site)
     {
-
+        //First let's update all the jobs with expired date
+        $site->updateJobsExpired();
     }
 
     public function login()
