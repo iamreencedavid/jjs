@@ -364,13 +364,26 @@ class AdminController extends Controller
         ]);
 
         if( auth()->attempt(['email' => $request->get('email') , 'password' => $request->get('password')])) {
-            return [
-                'status' => true,
-                'user'   => User::find($auth->user()->id)
+
+            if($auth->user()->status)
+            {
+                return [
+                    'status' => true,
+                    'user'   => User::find($auth->user()->id),
+                    'message'=> 'Account Found'
+                ];
+            } 
+            else
+            {
+                return [
+                'status'   => false,
+                'message'  => 'Sorry your accunt is in-active <br> Please contact your Administrator.'
             ];
+            }
         } else {
             return [
-                'status' => false
+                'status'   => false,
+                'message'  => 'Invalid Login Account <br> Please check your email/password'
             ];
         }
     }

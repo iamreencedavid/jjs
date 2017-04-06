@@ -33,20 +33,19 @@ class SendResume extends Mailable
     {   
         $resume = realpath("storage/uploads/resume/".$this->applicant->resume);
 
-        return $this->from('jjsactsoltion@gmail.com')
+        return $this->from('recruitment@jjsactsofservicefacilities.com')
                     ->subject('Application')
                     ->cc([
                         'aimz.ohtsuka@jjsactsofservicefacilities.com',
                         'benson.santos@jjsactsofservicefacilities.com',
                         'sharmaine.galve@jjsactsofservicefacilities.com',
                         'janice.gabriel@jjsactsofservicefacilities.com',
-                        'brian.asauro@jjsactsofservicefacilities.com',
-                        'akchipe@gmail.com'
+                        'brian.asauro@jjsactsofservicefacilities.com'
                     ])
                     ->attach($resume)
                     ->view('email.resume');
 
-        // return $this->from('jjsactsoltion@gmail.com')
+        // return $this->from('recruitment@jjsactsofservicefacilities.com')
         //             ->cc([
         //                 'akchipe@gmail.com'
         //             ])

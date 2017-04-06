@@ -168,11 +168,11 @@ $(document).ready(function(){
 		    type: 'GET',
 		    dataType : 'json'
 		}).done(function(response){
-			toastr.success(response.message, { timeOut: 1500});
-
-			setTimeout(function() {
+			if (response.status) {
 				window.location = _root + 'applicants';
-			}, 2000);
+			} else {
+				toastr.error(response.message, { timeOut: 1500});
+			}
 		}).fail(function(error, xhr){
 			
 		});
