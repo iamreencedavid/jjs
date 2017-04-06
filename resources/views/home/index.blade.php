@@ -43,7 +43,7 @@
 
 
 <!-- /.Sign Up Form -->
-<div class="row" id="Contact">
+<div class="row">
 	@include('contents.contacts')  
 </div>
 
