@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/contents/{content_id}', 'HomeController@get_content_info');
 Route::get('/news/{news_id}', 'HomeController@get_news_info');
 Route::get('/jobs/{job_id}', 'HomeController@get_job_info');
 Route::post('/application/send-request', 'HomeController@send_request');

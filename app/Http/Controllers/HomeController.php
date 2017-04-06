@@ -27,7 +27,8 @@ class HomeController extends Controller
     	$views['news'] = News::latest()->get();
     	$views['jobs'] = Job::latest()->get();
         $views['settings'] = Setting::take(1)->first();
-        
+        $views['contents'] = Content::latest()->get();
+
     	return view('home.index', $views);
     }
 
@@ -65,6 +66,11 @@ class HomeController extends Controller
         ]);
     }
 
+    public function get_content_info($content_id, Request $request)
+    {
+        return Content::find($content_id);
+    }
+    
     public function get_news_info($news_id, Request $request)
     {
         return News::find($news_id);

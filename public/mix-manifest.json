@@ -1,9 +1,9 @@
 {
-  "/js/vendor.js": "/js/vendor.js",
-  "/js/admin.js": "/js/admin.js",
-  "/js/app.js": "/js/app.js",
-  "/css/app.css": "/css/app.css",
-  "/css/vendor.css": "/css/vendor.css",
-  "/css/admin.css": "/css/admin.css",
-  "/css/remodal.css": "/css/remodal.css"
+  "/js/vendor.js": "/js/vendor.fdcf75943ddb48737837.js",
+  "/js/admin.js": "/js/admin.bd23a78872dd17677926.js",
+  "/js/app.js": "/js/app.9d645b06cb5e7bea90d0.js",
+  "/css/app.css": "/css/app.916dd50922ef4b25f27d.css",
+  "/css/vendor.css": "/css/vendor.916dd50922ef4b25f27d.css",
+  "/css/admin.css": "/css/admin.916dd50922ef4b25f27d.css",
+  "/css/remodal.css": "/css/remodal.6256bca1b6e9524aa4a6cf9f65677632.css"
 }

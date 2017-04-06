@@ -46,6 +46,7 @@
 
 
   @include('partials.footer')
+  @include('partials.modals.contents')
   @include('partials.modals.news')
   @include('partials.modals.jobs')
 

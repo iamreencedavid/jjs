@@ -68,12 +68,39 @@ $(document).ready(function($) {
             contentType: false,
             processData: false
         }).done(function(response){
-            setTimeout(function() {
-                window.location = '/';
-            }, 2000);
+            window.location = '/';
+            // setTimeout(function() {
+            //     window.location = '/';
+            // }, 2000);
         });
 
         return false;
+    });
+
+    $(document).on('click', '.btn-view-contents', function(event){
+        event.preventDefault();
+
+        let _this = $(this);
+        let id    = _this.data('id');
+
+        $.ajax({
+            url: '/contents/' + id,
+            data: null,
+            type: 'GET',
+            dataType : 'json',
+            contentType: false,
+            processData: false
+        }).done(function(response){
+            let inst = $('[data-remodal-id=Contents]').remodal();
+
+            $("#contents-title").text( response.title );
+            $("#contents-content").html( response.description );
+            /**
+             * Opens the modal window
+             */
+            inst.open();
+        });
+        
     });
 
     $(document).on('click', '.btn-open-news-info', function(event){

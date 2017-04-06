@@ -36,4 +36,5 @@ mix
    .sass('resources/assets/sass/main.scss','public/css/vendor.css')
    .sass('resources/assets/sass/admin.scss', 'public/css/admin.css')
    .copy('node_modules/pikaday/css/pikaday.css', 'public/libraries/pikaday/pikaday.css')
-   .copy('node_modules/pikaday/pikaday.js', 'public/libraries/pikaday/pikaday.js');
+   .copy('node_modules/pikaday/pikaday.js', 'public/libraries/pikaday/pikaday.js')
+   .version();
