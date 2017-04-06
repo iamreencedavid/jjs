@@ -51,28 +51,42 @@ $(document).ready(function($) {
     $(document).on('submit', '#form_apply', function(event){
 
         let $this = $(this);
-        let formData = new FormData();
 
-        formData.append('fullname', $('input[name="fullname"]').val());
-        formData.append('contact', $('input[name="contact"]').val());
-        formData.append('email', $('input[name="email"]').val());
+        if($("#accept").is(':checked')) {
+            let formData = new FormData();
 
-        // Attach file
-        formData.append('resume', $('input[type=file]')[0].files[0]); 
+            formData.append('fullname', $('input[name="fullname"]').val());
+            formData.append('contact', $('input[name="contact"]').val());
+            formData.append('email', $('input[name="email"]').val());
 
-        $.ajax({
-            url: '/application/send-request',
-            data: formData,
-            type: 'POST',
-            dataType : 'json',
-            contentType: false,
-            processData: false
-        }).done(function(response){
-            window.location = '/';
-            // setTimeout(function() {
-            //     window.location = '/';
-            // }, 2000);
-        });
+            // Attach file
+            formData.append('resume', $('input[type=file]')[0].files[0]); 
+
+            $.ajax({
+                url: '/application/send-request',
+                data: formData,
+                type: 'POST',
+                dataType : 'json',
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    $("#loader").removeClass('hidden');
+                    $('button[type="submit"]').prop('disabled', true);
+                },
+                complete: function(){
+                    $("#loader").addClass('hidden');
+                    $('button[type="submit"]').prop('disabled', false);
+                }
+            }).done(function(response){
+
+                $("#request-sent").removeClass('hidden');
+                setTimeout(function() {
+                    window.location = '/';
+                }, 2000);
+            });
+        } else {
+            alert('You need to accept on our agreements.');
+        }
 
         return false;
     });

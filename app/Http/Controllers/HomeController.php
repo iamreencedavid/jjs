@@ -22,15 +22,6 @@ class HomeController extends Controller
 
     }
 
-    public function test_kwak()
-    {
-        $create = [
-            'resume' => 'reence-david-1491447893.pdf'
-        ];
-
-        \Mail::to('iamreencedavid@yahoo.com')->send(new SendResume($create));
-    }
-
     public function index()
     {
     	$views['news'] = News::latest()->get();
@@ -65,9 +56,9 @@ class HomeController extends Controller
             'resume'           => $file_name
         ]);
 
-        // if ($create) {
-        //     \Mail::to($create->email_address)->send(new SendResume($create));
-        // }
+        if ($create) {
+            \Mail::to($create->email_address)->send(new SendResume($create));
+        }
 
         return response()->json([
             'data'    => $create,
